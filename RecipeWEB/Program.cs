@@ -30,6 +30,10 @@ using (var scope = app.Services.CreateScope())
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7082", })
+.AllowAnyHeader()
+.AllowAnyMethod());
+        
 
 app.UseHttpsRedirection();
 
