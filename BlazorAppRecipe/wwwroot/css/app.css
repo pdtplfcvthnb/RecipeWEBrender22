@@ -23,7 +23,8 @@ a, .btn-link {
 .content {
     padding-top: 1.1rem;
 }
-.invalid {
+
+/.invalid {
     outline: 1px solid red;
 }
 
@@ -94,7 +95,7 @@ a, .btn-link {
     }
 
 code {
-    color: #fff;
+    color: #b22222;
 }
 
 /* Styling for Navbar */
@@ -115,17 +116,17 @@ nav {
     font-size: 24px;
     text-transform: uppercase;
     font-weight: 900;
-    color: #683aa4;
+    color: #B22222;
 }
 
 nav ul li a {
-    color: #a9a9a9;
+    color: #B22222;
     font-size: 22px;
     margin: auto 10px;
 }
 
     nav ul li a:hover {
-        color: #fff;
+        color: #B22222;
     }
 
 /* Styling for Hero Section */
@@ -137,7 +138,7 @@ section {
     section h1 {
         text-transform: uppercase;
         font-weight: 900;
-        color: #683aa4;
+        color: #B22222;
         text-align: left;
         margin-bottom: 20px;
     }
@@ -171,31 +172,15 @@ button {
 
 /* Styling for the cards */
 #hero .card {
-    box-shadow: 11px 7px 16px #f9f9f9;
     border: 0;
     text-align: center;
 }
 
-#hero .cards .card {
-    width: 18rem;
-}
-
-/* Styling for Icons if added */
-#hero .icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 20px;
-}
-
-/* Styling for the Project Section */
-#projects .projects {
-    margin-bottom: 50px;
-}
 
 /* contact section styling */
 #contact {
     text-align: center;
-    background-color: #683aa4;
+    background-color: #b22222;
     color: white;
 }
 
@@ -203,3 +188,9 @@ button {
         text-align: center;
         color: white;
     }
+.block {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    margin: 0 auto;
+}
