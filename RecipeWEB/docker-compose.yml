@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  webapi:
+    image: ${DOCKER_REGISTRY-}webapi
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=Server=db;Database=RecipeDb;Password=Your_password123;MultipleActiveResultSets=true
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    image: "mcr.microsoft.com/mssql/server"  
+    environment:
+      - "SA_PASSWORD=Your_password123"
+      - "ACCEPT-EULA=Y"
+    container_name: mssql
+        
+    
+  
+
