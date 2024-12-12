@@ -60,7 +60,7 @@
         CurrentTime = date.ToShortTimeString();
 
         var client = new HttpClient();
-        client.BaseAddress = new Uri("https://my-best-api-lol.onrender.com/");
+        client.BaseAddress = new Uri("https://recipewebrender33.onrender.com/");
 
         result = await client.GetFromJsonAsync<User[]>("api/User");
 
