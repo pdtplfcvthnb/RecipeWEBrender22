@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
 COPY . ./
-RUN dotnet publish ./BLazorAppRecipe.csproj -c Release -o output
+RUN dotnet publish ./BlazorAppRecipe.csproj -c Release -o output
 
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
