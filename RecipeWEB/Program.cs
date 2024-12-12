@@ -33,6 +33,7 @@ using (var scope = app.Services.CreateScope())
     }
 app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7082", })
 .AllowAnyHeader()
+.AllowAnyOrigin()
 .AllowAnyMethod());
         
 
