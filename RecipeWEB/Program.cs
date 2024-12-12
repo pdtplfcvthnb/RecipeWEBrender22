@@ -22,7 +22,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<RecipeContext>();
-    context.Database.Migrate();
+    context.Database.Migrate(); //в бд уже существует объект
 }
 
     // Configure the HTTP request pipeline.
