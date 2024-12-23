@@ -25,7 +25,6 @@ namespace RecipeWEB.Controllers
             //В <> пишем имя таблицы, а после context название таблицы+s
             return Ok(recipeRatings);
         }
-
         [Authorization.Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
