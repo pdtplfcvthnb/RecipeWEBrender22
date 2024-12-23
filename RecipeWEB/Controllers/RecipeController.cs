@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RecipeWEB.Entities;
 using RecipeWEB.Models;
 
 namespace RecipeWEB.Controllers
@@ -14,6 +15,7 @@ namespace RecipeWEB.Controllers
             Context = context;
         }
 
+        [Authorization.AllowAnonymous]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -22,6 +24,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipes);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -33,6 +36,7 @@ namespace RecipeWEB.Controllers
             return Ok();
         }
 
+        [Authorization.Authorize]
         [HttpPost]
         public IActionResult Add(Recipe recipe)
         {
@@ -41,6 +45,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipe);
         }
 
+        [Authorization.Authorize]
         [HttpPut]
         public IActionResult Update(Recipe recipe)
         {
@@ -49,6 +54,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipe);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpDelete]
         public IActionResult Delete(int id)
         {

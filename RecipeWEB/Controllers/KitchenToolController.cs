@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipeWEB.Contracts.KitchenTool;
+using RecipeWEB.Entities;
 using RecipeWEB.Models;
 
 namespace RecipeWEB.Controllers
@@ -15,6 +16,7 @@ namespace RecipeWEB.Controllers
             Context = context;
         }
 
+        [Authorization.AllowAnonymous]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -23,6 +25,7 @@ namespace RecipeWEB.Controllers
             return Ok(kitchenTools);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -34,6 +37,7 @@ namespace RecipeWEB.Controllers
             return Ok();
         }
 
+        [Authorization.Authorize]
         [HttpPost]
         public IActionResult Add(CreateKitchenToolContract kitchenTool)
         {
@@ -46,6 +50,7 @@ namespace RecipeWEB.Controllers
             return Ok(kitchenTool);
         }
 
+        [Authorization.Authorize]
         [HttpPut]
         public IActionResult Update(UpdateKitchenToolContract kitchenTool)
         {
@@ -59,6 +64,7 @@ namespace RecipeWEB.Controllers
             return Ok(kitchenToolforUp);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpDelete]
         public IActionResult Delete(int id)
         {

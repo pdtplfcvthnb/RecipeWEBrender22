@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipeWEB.Contracts.RecipeRating;
+using RecipeWEB.Entities;
 using RecipeWEB.Models;
 
 namespace RecipeWEB.Controllers
@@ -16,6 +17,7 @@ namespace RecipeWEB.Controllers
             Context = context;
         }
 
+        [Authorization.AllowAnonymous]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -24,6 +26,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipeRatings);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -35,6 +38,7 @@ namespace RecipeWEB.Controllers
             return Ok();
         }
 
+        [Authorization.Authorize]
         [HttpPost]
         public IActionResult Add(CreateRecipeRatingContract recipeRating)
         {
@@ -51,6 +55,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipeRating1);
         }
 
+        [Authorization.Authorize]
         [HttpPut]
         public IActionResult Update(UpdateRecipeRatingContract recipeRating)
         {
@@ -68,6 +73,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipeRatingforUp);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpDelete]
         public IActionResult Delete(int id)
         {

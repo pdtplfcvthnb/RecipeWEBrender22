@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipeWEB.Contracts.Ingredient;
+using RecipeWEB.Entities;
 using RecipeWEB.Models;
 
 namespace RecipeWEB.Controllers
@@ -14,7 +15,7 @@ namespace RecipeWEB.Controllers
         {
             Context = context;
         }
-
+        [Authorization.AllowAnonymous]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -22,7 +23,7 @@ namespace RecipeWEB.Controllers
             //В <> пишем имя таблицы, а после context название таблицы+s
             return Ok(ingredients);
         }
-
+        [Authorization.Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -34,6 +35,7 @@ namespace RecipeWEB.Controllers
             return Ok();
         }
 
+        [Authorization.Authorize]
         [HttpPost]
         public IActionResult Add(CreateIngredientContract ingredient)
         {
@@ -47,6 +49,7 @@ namespace RecipeWEB.Controllers
             return Ok(ingredient1);
         }
 
+        [Authorization.Authorize]
         [HttpPut]
         public IActionResult Update(UpdateIngredientContract ingredient)
         {
@@ -61,6 +64,7 @@ namespace RecipeWEB.Controllers
             return Ok(ingredientforUp);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpDelete]
         public IActionResult Delete(int id)
         {

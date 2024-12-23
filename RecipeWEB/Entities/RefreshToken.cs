@@ -1,4 +1,6 @@
-﻿namespace RecipeWEB.Models
+﻿using RecipeWEB.Models;
+
+namespace RecipeWEB.Entities
 {
     public class RefreshToken
     {

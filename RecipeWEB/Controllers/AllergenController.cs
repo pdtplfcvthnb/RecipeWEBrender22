@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipeWEB.Contracts.Alergens;
+using RecipeWEB.Entities;
 using RecipeWEB.Models;
 
 namespace RecipeWEB.Controllers
 {
+    [Authorization.Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AllergenController : ControllerBase
@@ -14,7 +16,7 @@ namespace RecipeWEB.Controllers
         {
             Context = context;
         }
-
+        [Authorization.AllowAnonymous]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -22,7 +24,7 @@ namespace RecipeWEB.Controllers
             //В <> пишем имя таблицы, а после context название таблицы+s
             return Ok(allergens);
         }
-
+        [Authorization.Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -33,7 +35,7 @@ namespace RecipeWEB.Controllers
             }
             return Ok();
         }
-
+        [Authorization.Authorize]
         [HttpPost]
         public IActionResult Add(CreateAllergenContract allergen)
         {
@@ -45,7 +47,7 @@ namespace RecipeWEB.Controllers
             Context.SaveChanges();  
             return Ok(allergen1);
         }
-
+        [Authorization.Authorize]
         [HttpPut]
         public IActionResult Update(CreateAllergenContract allergen)
         {
@@ -58,7 +60,7 @@ namespace RecipeWEB.Controllers
             Context.SaveChanges();
             return Ok(allergenforUp);
         }
-
+        [Authorization.Authorize(Role.Admin)]
         [HttpDelete]
         public IActionResult Delete(int id)
         {
@@ -71,7 +73,5 @@ namespace RecipeWEB.Controllers
             Context.SaveChanges();
             return Ok();
         }
-
-
     }
 }

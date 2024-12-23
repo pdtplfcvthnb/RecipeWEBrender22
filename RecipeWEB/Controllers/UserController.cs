@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipeWEB.Contracts.Users;
+using RecipeWEB.Entities;
 using RecipeWEB.Models;
 
 namespace RecipeWEB.Controllers
@@ -15,6 +17,7 @@ namespace RecipeWEB.Controllers
             Context = context;
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -23,6 +26,7 @@ namespace RecipeWEB.Controllers
             return Ok(users);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -34,6 +38,7 @@ namespace RecipeWEB.Controllers
             return Ok();
         }
 
+        [Authorization.AllowAnonymous]
         [HttpPost]
         public IActionResult Add(CreateUserContract user)
         {
@@ -50,7 +55,9 @@ namespace RecipeWEB.Controllers
             Context.SaveChanges();
             return Ok(user1);
         }
-        [HttpPut]
+
+        [Authorization.Authorize(Role.Admin)]      
+        [HttpPut("id:int")]
         public IActionResult Update(UpdateUserContract user)
         {
             User? userforUp = Context.Users.Where(x => x.UserId == user.UserId).FirstOrDefault();
@@ -66,8 +73,8 @@ namespace RecipeWEB.Controllers
             Context.SaveChanges();
             return Ok(userforUp);
         }
-
-        [HttpDelete]
+        [Authorization.Authorize(Role.Admin)]
+        [HttpDelete("id:int")]
         public IActionResult Delete(int id)
         {
             User? user = Context.Users.Where(x => x.UserId == id).FirstOrDefault();
@@ -77,9 +84,7 @@ namespace RecipeWEB.Controllers
             }
             Context.Users.Remove(user);
             Context.SaveChanges();
-            return Ok();
+            return Ok(user);
         }
-
-
     }
 }

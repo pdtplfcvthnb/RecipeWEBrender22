@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RecipeWEB.Contracts.RecipeComment;
 using RecipeWEB.Contracts.RecipeIngredient;
+using RecipeWEB.Entities;
 using RecipeWEB.Models;
 
 namespace RecipeWEB.Controllers
@@ -16,6 +17,7 @@ namespace RecipeWEB.Controllers
             Context = context;
         }
 
+        [Authorization.AllowAnonymous]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -24,6 +26,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipeIngredients);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -35,6 +38,7 @@ namespace RecipeWEB.Controllers
             return Ok();
         }
 
+        [Authorization.Authorize]
         [HttpPost]
         public IActionResult Add(CreateRecipeIngredientContract recipeIngredient)
         {
@@ -48,6 +52,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipeIngredient1);
         }
 
+        [Authorization.Authorize]
         [HttpPut]
         public IActionResult Update(UpdateRecipeIngredientContract recipeIngredient)
         {
@@ -62,6 +67,7 @@ namespace RecipeWEB.Controllers
             return Ok(recipeIngredientforUp);
         }
 
+        [Authorization.Authorize(Role.Admin)]
         [HttpDelete]
         public IActionResult Delete(int id)
         {

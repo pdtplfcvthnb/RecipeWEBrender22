@@ -1,4 +1,4 @@
-﻿namespace RecipeWEB.Models
+﻿namespace RecipeWEB.Entities
 {
     public enum Role
     {
